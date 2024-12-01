@@ -21,13 +21,14 @@
             padding: 20px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
             text-align: center;
+            width: 300px;
         }
         .music-player h1 {
             font-size: 1.5rem;
             margin-bottom: 10px;
         }
         .music-player audio {
-            width: 100%;
+            width: 100%; /* Ensures the slider fits the player */
             margin: 10px 0;
             outline: none;
         }
@@ -39,6 +40,7 @@
             padding: 10px 15px;
             cursor: pointer;
             font-size: 1rem;
+            margin: 5px;
             transition: background-color 0.3s;
         }
         .music-player button:hover {
@@ -53,9 +55,10 @@
             <source src="Clock.m4a" type="audio/mpeg">
             Your browser does not support the audio element.
         </audio>
-        <br>
-        <button onclick="playMusic()">Play</button>
-        <button onclick="pauseMusic()">Pause</button>
+        <div>
+            <button onclick="playMusic()">Play</button>
+            <button onclick="pauseMusic()">Pause</button>
+        </div>
     </div>
 
     <script>
