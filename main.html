@@ -21,14 +21,14 @@
             padding: 20px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
             text-align: center;
-            width: 300px;
+            width: 320px;
         }
         .music-player h1 {
             font-size: 1.5rem;
             margin-bottom: 10px;
         }
         .music-player audio {
-            width: 100%; /* Ensures the slider fits the player */
+            width: 100%; /* Ensure the slider fits inside the player */
             margin: 10px 0;
             outline: none;
         }
@@ -51,7 +51,8 @@
 <body>
     <div class="music-player">
         <h1>Music Player</h1>
-        <audio id="audioPlayer" controls>
+        <!-- Use cross-browser friendly audio element -->
+        <audio id="audioPlayer" controls preload="metadata" controlslist="nodownload">
             <source src="Clock.m4a" type="audio/mpeg">
             Your browser does not support the audio element.
         </audio>
@@ -62,12 +63,19 @@
     </div>
 
     <script>
+        // Select the audio element
         const audio = document.getElementById('audioPlayer');
         
+        // Function to play audio
         function playMusic() {
-            audio.play();
+            if (audio.readyState >= 2) { // Ensure metadata is loaded
+                audio.play();
+            } else {
+                alert("Audio is not ready to play. Please wait...");
+            }
         }
 
+        // Function to pause audio
         function pauseMusic() {
             audio.pause();
         }
